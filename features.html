@@ -95,6 +95,7 @@
       color: white;
       position: relative;
       overflow: hidden;
+      min-height: 500px;
     }
 
     .hero::before {
@@ -106,6 +107,7 @@
       height: 100%;
       background: var(--gradient);
       opacity: 0.7;
+      z-index: 1;
     }
 
     .hero::after {
@@ -117,6 +119,7 @@
       height: 100%;
       background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
       animation: wave 15s linear infinite;
+      z-index: 1;
     }
 
     @keyframes wave {
@@ -128,6 +131,7 @@
       position: relative;
       max-width: 800px;
       margin: 0 auto;
+      z-index: 3;
     }
 
     .hero h1 {
@@ -145,13 +149,23 @@
       margin: 0 auto 2rem;
     }
 
+    .hero .buttons {
+      position: relative;
+      z-index: 4;
+    }
+
     .hero .buttons a {
       margin: 0.5rem;
       padding: 0.9rem 2rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 5;
     }
 
     .hero .buttons a:first-child {
@@ -169,6 +183,12 @@
       transform: scale(1.05);
       background: var(--secondary);
       color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero .buttons a:active {
+      transform: scale(0.95);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
 
     .floating-icons {
@@ -178,6 +198,7 @@
       top: 0;
       left: 0;
       pointer-events: none;
+      z-index: 2;
     }
 
     .floating-icon {
@@ -185,6 +206,7 @@
       font-size: 2.5rem;
       color: white;
       animation: float 6s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .youtube { top: 20%; left: 10%; animation-delay: 0s; }
@@ -606,8 +628,8 @@
       <h1>Unlock the Power of Droplink Features</h1>
       <p>Discover how Droplink’s features help you connect, share, and earn effortlessly within the Pi Network ecosystem. From unlimited links to advanced analytics, we’ve got everything you need to grow your online presence.</p>
       <div class="buttons">
-        <a href="get-started.html">Get Started for Free</a>
-        <a href="demo.html">See Features in Action</a>
+        <a href="get-started.html" role="button" aria-label="Get Started for Free">Get Started for Free</a>
+        <a href="demo.html" role="button" aria-label="See Features in Action">See Features in Action</a>
       </div>
     </div>
     <div class="floating-icons">
