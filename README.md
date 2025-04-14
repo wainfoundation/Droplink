@@ -6,10 +6,71 @@ A modern file sharing application with React frontend and Node.js/Express backen
 
 ```
 droplink/
-├── frontend/           # React frontend
-├── backend/           # Node.js/Express backend
-├── docker-compose.yml # Docker composition
-└── requirements.txt   # Python dependencies
+├── app.py                  # Main Flask application
+├── requirements.txt        # Python dependencies
+├── config.py               # Configuration settings
+├── models/                 # Database models
+│   ├── __init__.py
+│   └── user.py             # User model
+├── routes/                 # Flask routes
+│   ├── __init__.py
+│   └── main.py             # Main routes
+├── templates/              # HTML templates
+│   ├── base.html           # Base template for shared layout
+│   ├── index.html          # Homepage
+│   ├── 404.html            # 404 error page
+│   ├── features.html       # Features page
+│   ├── pricing.html        # Pricing page
+│   ├── templates.html      # Templates page
+│   ├── login.html          # Login page
+│   ├── get-started.html    # Get Started page
+│   ├── create.html         # Create Droplink page
+│   ├── demo.html           # Demo page
+│   ├── photographer-alex.html  # Featured creator page
+│   ├── blogger-luna.html   # Featured creator page
+│   ├── chef-kai.html       # Featured creator page
+│   ├── blog.html           # Company: The Droplink Blog
+│   ├── engineering-blog.html  # Company: Engineering Blog
+│   ├── marketplace.html    # Company: Marketplace
+│   ├── whats-new.html      # Company: What's New
+│   ├── about.html          # Company: About
+│   ├── press.html          # Company: Press
+│   ├── careers.html        # Company: Careers
+│   ├── link-in-bio.html    # Company: Link in Bio
+│   ├── social-good.html    # Company: Social Good
+│   ├── contact.html        # Company: Contact
+│   ├── enterprise.html     # Community: Droplink for Enterprise
+│   ├── creator-report-2023.html  # Community: 2023 Creator Report
+│   ├── creator-report-2022.html  # Community: 2022 Creator Report
+│   ├── charities.html      # Community: Charities
+│   ├── trending.html       # Community: What's Trending
+│   ├── creator-directory.html  # Community: Creator Profile Directory
+│   ├── explore-templates.html  # Community: Explore Templates
+│   ├── help-topics.html    # Support: Help Topics
+│   ├── getting-started.html  # Support: Getting Started
+│   ├── droplink-pro.html   # Support: Droplink Pro
+│   ├── features-how-tos.html  # Support: Features & How-Tos
+│   ├── faqs.html           # Support: FAQs
+│   ├── report-violation.html  # Support: Report a Violation
+│   ├── terms-conditions.html  # Trust & Legal: Terms & Conditions
+│   ├── privacy-notice.html  # Trust & Legal: Privacy Notice
+│   ├── cookie-notice.html  # Trust & Legal: Cookie Notice
+│   ├── trust-center.html   # Trust & Legal: Trust Center
+│   └── cookie-preferences.html  # Trust & Legal: Cookie Preferences
+├── static/                 # Static assets
+│   ├── css/
+│   │   └── styles.css      # Extracted CSS
+│   ├── js/
+│   │   └── scripts.js      # Placeholder for JavaScript
+│   └── images/
+│       └── logo.png        # Placeholder for logo
+├── tests/                  # Unit tests
+│   ├── __init__.py
+│   └── test_routes.py      # Tests for routes
+├── migrations/             # Database migrations
+├── .env                    # Environment variables
+├── .gitignore              # Git ignore file
+└── README.md               # Project documentation
 ```
 
 ## Prerequisites
