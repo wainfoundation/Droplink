@@ -7,17 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    /* Root Variables */
     :root {
-      --primary: #00aaff; /* Aqua blue */
-      --secondary: #0077cc; /* Deeper blue */
-      --gradient: linear-gradient(45deg, #00aaff, #00d4ff); /* Water gradient */
-      --text: #002b4f; /* Dark blue text */
-      --background: #f0f9ff; /* Light blue background */
-      --card-bg: #ffffff; /* White card background */
-      --footer-bg: #e6f3ff; /* Footer background */
-      --hover-bg: #b3e5fc; /* Hover background */
-      --shadow: 0 4px 12px rgba(0, 119, 255, 0.1); /* Soft shadow */
+      --primary: #00aaff;
+      --secondary: #0077cc;
+      --gradient: linear-gradient(45deg, #00aaff, #00d4ff);
+      --text: #002b4f;
+      --background: #f0f9ff;
+      --card-bg: #ffffff;
+      --footer-bg: #e6f3ff;
+      --hover-bg: #b3e5fc;
+      --shadow: 0 4px 12px rgba(0, 119, 255, 0.1);
     }
 
     * {
@@ -31,6 +30,7 @@
       background-color: var(--background);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* Header */
@@ -38,17 +38,18 @@
       background: white;
       position: sticky;
       top: 0;
-      padding: 1.2rem 3rem;
+      padding: 1rem 1.5rem;
       box-shadow: var(--shadow);
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
+      width: 100%;
     }
 
     header .logo {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.6rem;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
       font-weight: 700;
       color: var(--primary);
       display: flex;
@@ -65,16 +66,21 @@
       align-items: center;
     }
 
-    nav a {
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .desktop-nav a {
       margin: 0 1.2rem;
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: clamp(0.9rem, 2.5vw, 0.95rem);
       transition: color 0.3s ease;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: var(--primary);
     }
 
@@ -85,6 +91,7 @@
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
+      font-size: clamp(0.85rem, 2.5vw, 0.9rem);
       transition: background 0.3s ease;
     }
 
@@ -95,9 +102,10 @@
     /* Hamburger Menu */
     .hamburger {
       display: none;
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 5vw, 1.8rem);
       color: var(--primary);
       cursor: pointer;
+      padding: 0.5rem;
       z-index: 1001;
     }
 
@@ -110,22 +118,58 @@
       height: 100%;
       background: rgba(255, 255, 255, 0.98);
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1.5rem;
       z-index: 1000;
-      padding: 2rem;
+      overflow-y: auto;
     }
 
     .mobile-menu.active {
       display: flex;
     }
 
+    .mobile-menu h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.2rem);
+      color: var(--primary);
+      margin: 1rem 0 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .mobile-menu h3::after {
+      content: '\f078'; /* Chevron down */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .mobile-menu h3.active::after {
+      content: '\f077'; /* Chevron up */
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+
+    .mobile-menu ul.active {
+      display: flex;
+    }
+
     .mobile-menu a {
-      margin: 1.5rem 0;
-      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      font-size: clamp(0.95rem, 2.5vw, 1rem);
       color: var(--text);
       text-decoration: none;
       font-weight: 500;
+      padding: 0.5rem;
       transition: color 0.3s ease;
     }
 
@@ -134,33 +178,33 @@
     }
 
     .mobile-menu .cta {
-      margin: 1.5rem 0;
+      margin: 1rem 0;
+      width: fit-content;
     }
 
     .close-btn {
-      position: absolute;
-      top: 1.5rem;
+      position: fixed;
+      top: 1rem;
       right: 1.5rem;
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 5vw, 1.8rem);
       color: var(--primary);
       cursor: pointer;
+      padding: 0.5rem;
     }
 
     /* Terms Section */
     .terms-section {
-      padding: 5rem 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      max-width: 900px;
+      margin: 2rem auto;
       background: var(--card-bg);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      margin-top: 2rem;
-      margin-bottom: 2rem;
     }
 
     .terms-section h1 {
       font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
       font-weight: 700;
       color: var(--primary);
       text-align: center;
@@ -169,22 +213,22 @@
 
     .terms-section .last-updated {
       text-align: center;
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 2.5vw, 0.95rem);
       color: #666;
       margin-bottom: 2rem;
     }
 
     .terms-section h2 {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.5rem;
+      font-size: clamp(1.3rem, 4vw, 1.5rem);
       font-weight: 600;
       color: var(--secondary);
       margin-top: 2rem;
       margin-bottom: 1rem;
     }
 
-    .terms-section p {
-      font-size: 1rem;
+    .terms-section p, .terms-section li {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
       color: var(--text);
       margin-bottom: 1rem;
     }
@@ -193,12 +237,6 @@
       list-style-type: disc;
       padding-left: 2rem;
       margin-bottom: 1rem;
-    }
-
-    .terms-section li {
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
     }
 
     .terms-section a {
@@ -215,12 +253,11 @@
     /* Footer */
     footer {
       background-color: var(--footer-bg);
-      padding: 3rem 2rem;
-      font-size: 0.9rem;
+      padding: 2rem 1.5rem;
+      font-size: clamp(0.85rem, 2.5vw, 0.9rem);
       color: var(--text);
       position: relative;
       overflow: hidden;
-      transition: background-color 0.3s ease;
     }
 
     footer::before {
@@ -240,69 +277,53 @@
       100% { background-position: 1000px 1000px; }
     }
 
-    footer:hover {
-      background-color: #e0f0ff;
-    }
-
     .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
     }
 
     .footer-links {
-      flex: 1;
-      min-width: 200px;
-      max-width: 250px;
+      min-width: 150px;
     }
 
     .footer-links h3 {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      margin-bottom: 1rem;
       color: var(--primary);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     .footer-links ul {
       list-style: none;
-      padding: 0;
     }
 
     .footer-links li {
-      margin: 0.8rem 0; /* Increased spacing for better touch interaction */
-      transition: transform 0.3s ease;
+      margin: 0.6rem 0;
     }
 
     .footer-links a {
       text-decoration: none;
       color: var(--text);
-      display: block;
-      font-size: 0.95rem;
-      padding: 0.5rem 0; /* Added padding for touch targets */
+      font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 0;
       transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
       color: var(--secondary);
-      font-weight: 500;
     }
 
     .footer-links a i {
       margin-right: 8px;
       font-size: 0.9rem;
       color: var(--primary);
-      transition: transform 0.3s ease;
-    }
-
-    .footer-links a:hover i {
-      transform: scale(1.2);
     }
 
     .footer-bottom {
@@ -310,13 +331,11 @@
       padding: 1.5rem 0;
       border-top: 1px solid rgba(0, 119, 255, 0.2);
       margin-top: 2rem;
-      animation: fadeIn 1s ease-out;
-      position: relative;
     }
 
     .footer-logo {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem;
+      font-size: clamp(1.1rem, 3vw, 1.2rem);
       font-weight: 700;
       color: var(--primary);
       display: inline-flex;
@@ -324,18 +343,13 @@
       margin-right: 5px;
     }
 
-    .footer-logo i {
-      margin-right: 8px;
-    }
-
     .footer-bottom p {
       margin-bottom: 0.5rem;
       font-weight: 600;
-      font-size: 0.95rem;
     }
 
     .pi-tagline {
-      font-size: 0.85rem;
+      font-size: clamp(0.8rem, 2.5vw, 0.85rem);
       color: var(--secondary);
       margin-top: 0.3rem;
     }
@@ -343,102 +357,53 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       margin-top: 1rem;
     }
 
     .social-links a {
-      text-decoration: none;
       color: var(--primary);
-      font-size: 1.8rem;
-      padding: 0.5rem; /* Added padding for touch targets */
-      transition: transform 0.3s ease, color 0.3s ease;
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
+      padding: 0.5rem;
+      transition: color 0.3s ease;
     }
 
     .social-links a:hover {
-      transform: scale(1.3);
       color: var(--secondary);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Mobile Styles */
+    /* Media Queries */
     @media (max-width: 768px) {
-      /* Header */
-      header {
-        padding: 1rem 1.5rem;
-      }
-
-      header .logo {
-        font-size: 1.4rem;
-      }
-
-      nav .desktop-nav {
-        display: none; /* Hide desktop navigation links */
+      .desktop-nav {
+        display: none;
       }
 
       .hamburger {
-        display: block; /* Show hamburger menu */
+        display: block;
       }
 
-      .terms-section { 
-        padding: 3rem 1rem; 
-      }
-
-      .terms-section h1 { 
-        font-size: 1.8rem; 
-      }
-
-      .terms-section h2 { 
-        font-size: 1.3rem; 
-      }
-
-      /* Footer */
-      footer {
-        padding: 2rem 1rem; /* Reduced padding for mobile */
-      }
-
-      .footer-container { 
-        flex-direction: column; 
-        align-items: center; 
-      }
-
-      .footer-links { 
-        max-width: 100%; 
-        margin-bottom: 2rem; 
-        text-align: center; 
-      }
-
-      .footer-links li { 
-        margin: 1rem 0; /* Increased spacing for touch */
-      }
-
-      .footer-links li:hover { 
-        transform: none; /* Remove transform on mobile */
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
 
       .footer-links a {
-        font-size: 1rem; /* Slightly larger for readability */
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0.8rem 1rem;
       }
 
-      .footer-links a i {
+      .terms-section {
+        padding: 2rem 1rem;
+        margin: 1rem;
+      }
+
+      .footer-links h3 {
         font-size: 1rem;
-      }
-
-      .footer-links a:hover i {
-        transform: none; /* Remove transform on mobile */
-      }
-
-      .social-links a {
-        font-size: 2rem; /* Larger icons for touch */
-        padding: 1rem; /* Larger touch target */
-      }
-
-      .social-links a:hover {
-        transform: none; /* Remove transform on mobile */
       }
     }
   </style>
@@ -465,15 +430,60 @@
       <div class="close-btn">
         <i class="fas fa-times"></i>
       </div>
-      <a href="features.html">Features</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="templates.html">Templates</a>
-      <a href="login.html">Log In</a>
-      <a href="get-started.html" class="cta">Get Started</a>
+      <!-- Company -->
+      <h3>Company</h3>
+      <ul>
+        <li><a href="blog.html">The Droplink Blog</a></li>
+        <li><a href="engineering-blog.html">Engineering Blog</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="whats-new.html">What's New</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="press.html">Press</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="link-in-bio.html">Link in Bio</a></li>
+        <li><a href="social-good.html">Social Good</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Community -->
+      <h3>Community</h3>
+      <ul>
+        <li><a href="enterprise.html">Droplink for Enterprise</a></li>
+        <li><a href="creator-report-2023.html">2023 Creator Report</a></li>
+        <li><a href="creator-report-2022.html">2022 Creator Report</a></li>
+        <li><a href="charities.html">Charities</a></li>
+        <li><a href="trending.html">What's Trending</a></li>
+        <li><a href="creator-directory.html">Creator Profile Directory</a></li>
+        <li><a href="explore-templates.html">Explore Templates</a></li>
+      </ul>
+      <!-- Support -->
+      <h3>Support</h3>
+      <ul>
+        <li><a href="help-topics.html">Help Topics</a></li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li><a href="droplink-pro.html">Droplink Pro</a></li>
+        <li><a href="features-how-tos.html">Features & How-Tos</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="report-violation.html">Report a Violation</a></li>
+      </ul>
+      <!-- Trust & Legal -->
+      <h3>Trust & Legal</h3>
+      <ul>
+        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+        <li><a href="privacy-notice.html">Privacy Notice</a></li>
+        <li><a href="cookie-notice.html">Cookie Notice</a></li>
+        <li><a href="trust-center.html">Trust Center</a></li>
+        <li><a href="cookie-preferences.html">Cookie Preferences</a></li>
+      </ul>
+      <!-- Account -->
+      <h3>Account</h3>
+      <ul>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="get-started.html" class="cta">Get Started</a></li>
+      </ul>
     </div>
   </header>
 
-  <!-- Terms Section -->
+  <!-- Terms Section (Unchanged) -->
   <section class="terms-section">
     <h1>Terms & Conditions</h1>
     <p class="last-updated">Last Updated: April 14, 2025</p>
@@ -548,7 +558,7 @@
     </ul>
   </section>
 
-  <!-- Footer Section -->
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-links">
@@ -623,8 +633,9 @@
     </div>
   </footer>
 
-  <!-- JavaScript for Mobile Menu -->
+  <!-- JavaScript -->
   <script>
+    // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
     const closeBtn = document.querySelector('.close-btn');
@@ -637,7 +648,16 @@
       mobileMenu.classList.remove('active');
     });
 
-    // Close the menu when a link is clicked
+    // Collapsible Mobile Menu Sections
+    mobileMenu.querySelectorAll('h3').forEach(header => {
+      header.addEventListener('click', () => {
+        const ul = header.nextElementSibling;
+        ul.classList.toggle('active');
+        header.classList.toggle('active');
+      });
+    });
+
+    // Close Mobile Menu on Link Click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
