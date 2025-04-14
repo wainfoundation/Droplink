@@ -17,6 +17,7 @@
       --footer-bg: #e6f3ff;
       --hover-bg: #b3e5fc;
       --shadow: 0 4px 12px rgba(0, 119, 255, 0.1);
+      --menu-section-bg: #f8fbff;
     }
 
     * {
@@ -31,6 +32,11 @@
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    a:focus, button:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
 
     /* Header */
@@ -107,6 +113,8 @@
       cursor: pointer;
       padding: 0.5rem;
       z-index: 1001;
+      background: none;
+      border: none;
     }
 
     .mobile-menu {
@@ -116,16 +124,68 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.98);
+      background: white;
       flex-direction: column;
-      align-items: flex-start;
-      padding: 3rem 1.5rem;
+      padding: 1rem 1.5rem;
       z-index: 1000;
       overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
     }
 
     .mobile-menu.active {
       display: flex;
+      transform: translateX(0);
+    }
+
+    .mobile-menu-header {
+      position: sticky;
+      top: 0;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 119, 255, 0.1);
+      z-index: 10;
+    }
+
+    .mobile-menu .logo {
+      font-size: 1.4rem;
+    }
+
+    .close-btn {
+      font-size: clamp(1.5rem, 5vw, 1.8rem);
+      color: var(--primary);
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      z-index: 1002;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .mobile-menu .search-bar {
+      margin: 1rem 0;
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 1px solid rgba(0, 119, 255, 0.2);
+      border-radius: 8px;
+      background: var(--card-bg);
     }
 
     .mobile-menu h3 {
@@ -133,34 +193,47 @@
       font-size: clamp(1.1rem, 3vw, 1.2rem);
       color: var(--primary);
       margin: 1rem 0 0.5rem;
+      padding: 0.8rem;
+      background: var(--menu-section-bg);
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    .mobile-menu h3:hover {
+      background: var(--hover-bg);
+    }
+
+    .mobile-menu h3 i {
+      margin-right: 8px;
     }
 
     .mobile-menu h3::after {
-      content: '\f078'; /* Chevron down */
+      content: '\f078';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       font-size: 0.9rem;
     }
 
     .mobile-menu h3.active::after {
-      content: '\f077'; /* Chevron up */
+      content: '\f077';
     }
 
     .mobile-menu ul {
       list-style: none;
       width: 100%;
-      display: none;
-      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
       padding-left: 1rem;
     }
 
     .mobile-menu ul.active {
-      display: flex;
+      max-height: 500px; /* Adjust based on content */
     }
 
     .mobile-menu a {
@@ -169,11 +242,14 @@
       color: var(--text);
       text-decoration: none;
       font-weight: 500;
-      padding: 0.5rem;
-      transition: color 0.3s ease;
+      padding: 0.8rem;
+      display: block;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    .mobile-menu a:hover {
+    .mobile-menu a:hover, .mobile-menu a:focus {
+      background: var(--hover-bg);
       color: var(--primary);
     }
 
@@ -182,14 +258,29 @@
       width: fit-content;
     }
 
-    .close-btn {
-      position: fixed;
-      top: 1rem;
-      right: 1.5rem;
-      font-size: clamp(1.5rem, 5vw, 1.8rem);
-      color: var(--primary);
-      cursor: pointer;
-      padding: 0.5rem;
+    .mobile-menu .sticky-cta {
+      position: sticky;
+      bottom: 1rem;
+      padding: 1rem;
+      background: white;
+      border-top: 1px solid rgba(0, 119, 255, 0.1);
+      text-align: center;
+    }
+
+    .back-to-top {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background: var(--secondary);
     }
 
     /* Terms Section */
@@ -285,10 +376,6 @@
       margin: 0 auto;
     }
 
-    .footer-links {
-      min-width: 150px;
-    }
-
     .footer-links h3 {
       font-family: 'Poppins', sans-serif;
       font-size: clamp(1rem, 3vw, 1.1rem);
@@ -296,10 +383,19 @@
       color: var(--primary);
       font-weight: 600;
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .footer-links h3 i {
+      margin-right: 8px;
     }
 
     .footer-links ul {
       list-style: none;
+      max-height: none;
+      transition: max-height 0.3s ease-out;
     }
 
     .footer-links li {
@@ -312,18 +408,49 @@
       font-size: clamp(0.85rem, 2.5vw, 0.95rem);
       display: flex;
       align-items: center;
-      padding: 0.5rem 0;
-      transition: color 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
     }
 
-    .footer-links a:hover {
+    .footer-links a:hover, .footer-links a:focus {
+      background: var(--hover-bg);
       color: var(--secondary);
+      transform: translateX(4px);
     }
 
     .footer-links a i {
       margin-right: 8px;
       font-size: 0.9rem;
       color: var(--primary);
+    }
+
+    .newsletter-form {
+      margin-top: 1rem;
+    }
+
+    .newsletter-form input {
+      padding: 0.8rem;
+      width: 100%;
+      border: 1px solid rgba(0, 119, 255, 0.2);
+      border-radius: 8px 8px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .newsletter-form button {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0 0 8px 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--secondary);
     }
 
     .footer-bottom {
@@ -357,19 +484,42 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1.5rem;
       margin-top: 1rem;
+      position: relative;
     }
 
     .social-links a {
       color: var(--primary);
-      font-size: clamp(1.5rem, 4vw, 1.8rem);
-      padding: 0.5rem;
-      transition: color 0.3s ease;
+      font-size: clamp(1.8rem, 4.5vw, 2rem);
+      padding: 0.6rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+      position: relative;
     }
 
-    .social-links a:hover {
+    .social-links a:hover, .social-links a:focus {
       color: var(--secondary);
+      transform: scale(1.1);
+    }
+
+    .social-links a::after {
+      content: attr(aria-label);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--secondary);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .social-links a:hover::after, .social-links a:focus::after {
+      opacity: 1;
     }
 
     /* Media Queries */
@@ -384,11 +534,35 @@
 
       .footer-container {
         grid-template-columns: 1fr;
-        text-align: center;
+        text-align: left;
+      }
+
+      .footer-links h3::after {
+        content: '\f078';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 0.9rem;
+      }
+
+      .footer-links h3.active::after {
+        content: '\f077';
+      }
+
+      .footer-links ul {
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .footer-links ul.active {
+        max-height: 500px;
       }
 
       .footer-links a {
-        justify-content: center;
+        justify-content: flex-start;
+      }
+
+      .newsletter-form input, .newsletter-form button {
+        font-size: clamp(0.85rem, 2.5vw, 0.9rem);
       }
     }
 
@@ -402,13 +576,29 @@
         margin: 1rem;
       }
 
+      .mobile-menu {
+        padding: 1rem;
+      }
+
+      .mobile-menu .search-bar {
+        padding: 0.6rem;
+      }
+
       .footer-links h3 {
         font-size: 1rem;
+      }
+
+      .social-links a {
+        font-size: 1.6rem;
+        padding: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to Content</a>
+
   <!-- Header -->
   <header>
     <div class="logo">
@@ -422,17 +612,23 @@
         <a href="login.html">Log In</a>
         <a href="get-started.html" class="cta">Get Started</a>
       </div>
-      <div class="hamburger">
+      <button class="hamburger" aria-label="Open Menu" aria-controls="mobile-menu">
         <i class="fas fa-bars"></i>
-      </div>
+      </button>
     </nav>
-    <div class="mobile-menu">
-      <div class="close-btn">
-        <i class="fas fa-times"></i>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-header">
+        <div class="logo">
+          <i class="fas fa-tint logo-icon"></i> Droplink
+        </div>
+        <button class="close-btn" aria-label="Close Menu">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
+      <input type="text" class="search-bar" placeholder="Search menu..." aria-label="Search menu">
       <!-- Company -->
-      <h3>Company</h3>
-      <ul>
+      <h3 id="company-section" aria-expanded="false" aria-controls="company-links"><i class="fas fa-building"></i> Company</h3>
+      <ul id="company-links">
         <li><a href="blog.html">The Droplink Blog</a></li>
         <li><a href="engineering-blog.html">Engineering Blog</a></li>
         <li><a href="marketplace.html">Marketplace</a></li>
@@ -445,8 +641,8 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <!-- Community -->
-      <h3>Community</h3>
-      <ul>
+      <h3 id="community-section" aria-expanded="false" aria-controls="community-links"><i class="fas fa-users"></i> Community</h3>
+      <ul id="community-links">
         <li><a href="enterprise.html">Droplink for Enterprise</a></li>
         <li><a href="creator-report-2023.html">2023 Creator Report</a></li>
         <li><a href="creator-report-2022.html">2022 Creator Report</a></li>
@@ -456,8 +652,8 @@
         <li><a href="explore-templates.html">Explore Templates</a></li>
       </ul>
       <!-- Support -->
-      <h3>Support</h3>
-      <ul>
+      <h3 id="support-section" aria-expanded="false" aria-controls="support-links"><i class="fas fa-question-circle"></i> Support</h3>
+      <ul id="support-links">
         <li><a href="help-topics.html">Help Topics</a></li>
         <li><a href="getting-started.html">Getting Started</a></li>
         <li><a href="droplink-pro.html">Droplink Pro</a></li>
@@ -466,8 +662,8 @@
         <li><a href="report-violation.html">Report a Violation</a></li>
       </ul>
       <!-- Trust & Legal -->
-      <h3>Trust & Legal</h3>
-      <ul>
+      <h3 id="trust-section" aria-expanded="false" aria-controls="trust-links"><i class="fas fa-shield-alt"></i> Trust & Legal</h3>
+      <ul id="trust-links">
         <li><a href="terms-conditions.html">Terms & Conditions</a></li>
         <li><a href="privacy-notice.html">Privacy Notice</a></li>
         <li><a href="cookie-notice.html">Cookie Notice</a></li>
@@ -475,16 +671,20 @@
         <li><a href="cookie-preferences.html">Cookie Preferences</a></li>
       </ul>
       <!-- Account -->
-      <h3>Account</h3>
-      <ul>
+      <h3 id="account-section" aria-expanded="false" aria-controls="account-links"><i class="fas fa-user"></i> Account</h3>
+      <ul id="account-links">
         <li><a href="login.html">Log In</a></li>
         <li><a href="get-started.html" class="cta">Get Started</a></li>
       </ul>
+      <a href="#" class="back-to-top">Back to Top</a>
+      <div class="sticky-cta">
+        <a href="get-started.html" class="cta">Get Started Now</a>
+      </div>
     </div>
   </header>
 
   <!-- Terms Section (Unchanged) -->
-  <section class="terms-section">
+  <section class="terms-section" id="main-content">
     <h1>Terms & Conditions</h1>
     <p class="last-updated">Last Updated: April 14, 2025</p>
 
@@ -562,8 +762,8 @@
   <footer>
     <div class="footer-container">
       <div class="footer-links">
-        <h3>Company</h3>
-        <ul>
+        <h3 id="footer-company" aria-expanded="true" aria-controls="footer-company-links"><i class="fas fa-building"></i> Company</h3>
+        <ul id="footer-company-links" class="active">
           <li><a href="blog.html"><i class="fas fa-blog"></i> The Droplink Blog</a></li>
           <li><a href="engineering-blog.html"><i class="fas fa-code"></i> Engineering Blog</a></li>
           <li><a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a></li>
@@ -578,8 +778,8 @@
       </div>
 
       <div class="footer-links">
-        <h3>Community</h3>
-        <ul>
+        <h3 id="footer-community" aria-expanded="true" aria-controls="footer-community-links"><i class="fas fa-users"></i> Community</h3>
+        <ul id="footer-community-links" class="active">
           <li><a href="enterprise.html"><i class="fas fa-building"></i> Droplink for Enterprise</a></li>
           <li><a href="creator-report-2023.html"><i class="fas fa-file-alt"></i> 2023 Creator Report</a></li>
           <li><a href="creator-report-2022.html"><i class="fas fa-file-alt"></i> 2022 Creator Report</a></li>
@@ -591,8 +791,8 @@
       </div>
 
       <div class="footer-links">
-        <h3>Support</h3>
-        <ul>
+        <h3 id="footer-support" aria-expanded="true" aria-controls="footer-support-links"><i class="fas fa-question-circle"></i> Support</h3>
+        <ul id="footer-support-links" class="active">
           <li><a href="help-topics.html"><i class="fas fa-question-circle"></i> Help Topics</a></li>
           <li><a href="getting-started.html"><i class="fas fa-rocket"></i> Getting Started</a></li>
           <li><a href="droplink-pro.html"><i class="fas fa-star"></i> Droplink Pro</a></li>
@@ -603,8 +803,8 @@
       </div>
 
       <div class="footer-links">
-        <h3>Trust & Legal</h3>
-        <ul>
+        <h3 id="footer-trust" aria-expanded="true" aria-controls="footer-trust-links"><i class="fas fa-shield-alt"></i> Trust & Legal</h3>
+        <ul id="footer-trust-links" class="active">
           <li><a href="terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
           <li><a href="privacy-notice.html"><i class="fas fa-shield-alt"></i> Privacy Notice</a></li>
           <li><a href="cookie-notice.html"><i class="fas fa-cookie-bite"></i> Cookie Notice</a></li>
@@ -614,16 +814,29 @@
       </div>
 
       <div class="footer-links">
-        <h3>Account</h3>
-        <ul>
+        <h3 id="footer-account" aria-expanded="true" aria-controls="footer-account-links"><i class="fas fa-user"></i> Account</h3>
+        <ul id="footer-account-links" class="active">
           <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
           <li><a href="get-started.html"><i class="fas fa-user-plus"></i> Get Started for Free</a></li>
         </ul>
       </div>
+
+      <div class="footer-links">
+        <h3 id="footer-quick" aria-expanded="true" aria-controls="footer-quick-links"><i class="fas fa-bolt"></i> Quick Links</h3>
+        <ul id="footer-quick-links" class="active">
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li><a href="faqs.html"><i class="fas fa-info"></i> FAQs</a></li>
+          <li><a href="get-started.html"><i class="fas fa-user-plus"></i> Get Started</a></li>
+        </ul>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Subscribe to our newsletter" aria-label="Email for newsletter" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
     </div>
 
     <div class="footer-bottom">
-      <p><span class="footer-logo"><i class="fas fa-tint"></i> Droplink</span> © 2025 | Built for Pi Network with <i class="fas fa-tint"></i></p>
+      <p><span class="footer-logo"><i class="fas fa-tint"></i> Droplink</span> © <span id="copyright-year">2023-2025</span> | Built for Pi Network with <i class="fas fa-tint"></i></p>
       <p class="pi-tagline">Powered by Pi Network <i class="fas fa-water"></i></p>
       <div class="social-links">
         <a href="https://instagram.com" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -635,25 +848,29 @@
 
   <!-- JavaScript -->
   <script>
-    // Mobile Menu Toggle
+    // Mobile Menu
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
     const closeBtn = document.querySelector('.close-btn');
 
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
     });
 
     closeBtn.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
     });
 
     // Collapsible Mobile Menu Sections
     mobileMenu.querySelectorAll('h3').forEach(header => {
       header.addEventListener('click', () => {
         const ul = header.nextElementSibling;
+        const isActive = ul.classList.contains('active');
         ul.classList.toggle('active');
         header.classList.toggle('active');
+        header.setAttribute('aria-expanded', !isActive);
       });
     });
 
@@ -661,7 +878,46 @@
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    // Search Functionality
+    const searchBar = mobileMenu.querySelector('.search-bar');
+    searchBar.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      mobileMenu.querySelectorAll('ul li a').forEach(link => {
+        const text = link.textContent.toLowerCase();
+        link.parentElement.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    // Back to Top
+    mobileMenu.querySelector('.back-to-top').addEventListener('click', (e) => {
+      e.preventDefault();
+      mobileMenu.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Footer Collapsible Sections (Mobile)
+    document.querySelectorAll('.footer-links h3').forEach(header => {
+      header.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          const ul = header.nextElementSibling;
+          const isActive = ul.classList.contains('active');
+          ul.classList.toggle('active');
+          header.classList.toggle('active');
+          header.setAttribute('aria-expanded', !isActive);
+        }
+      });
+    });
+
+    // Dynamic Copyright Year
+    document.getElementById('copyright-year').textContent = `2023-${new Date().getFullYear()}`;
+
+    // Newsletter Form (Placeholder)
+    document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for subscribing!');
     });
   </script>
 </body>
