@@ -1,1 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Droplink | Drop All Your Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* Root Variables */
+    :root {
+      --primary: #00aaff; /* Aqua blue */
+      --secondary: #0077cc; /* Deeper blue */
+      --gradient: linear-gradient(45deg, #00aaff, #00d4ff); /* Water gradient */
+      --text: #002b4f; /* Dark blue text */
+      --background: #f0f9ff; /* Light blue background */
+      --card-bg: #ffffff; /* White card background */
+      --footer-bg: #e6f3ff; /* Footer background */
+      --hover-bg: #b3e5fc; /* Hover background */
+      --shadow: 0 4px 12px rgba(0, 119, 255, 0.1); /* Soft shadow */
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      position: sticky;
+      top: 0;
+      padding: 1.2rem 3rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-icon {
+      margin-right: 8px;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin: 0 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .cta {
+      background: var(--primary);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background: var(--secondary);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient);
+      opacity: 0.7;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+      animation: wave 15s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero .buttons a {
+      margin: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .hero .buttons a:first-child {
+      background: white;
+      color: var(--primary);
+    }
+
+    .hero .buttons a:last-child {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .hero .buttons a:hover {
+      transform: scale(1.05);
+      background: var(--secondary);
+      color: white;
+    }
+
+    .floating-icons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .floating-icon {
+      position: absolute;
+      font-size: 2.5rem;
+      color: white;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .youtube { top: 20%; left: 10%; animation-delay: 0s; }
+    .telegram { top: 30%; right: 15%; animation-delay: 2s; }
+    .pi { top: 50%; left: 20%; animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Sections */
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .section p.subtitle {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: var(--text);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    /* Mobile Preview */
+    .mobile-frame {
+      background: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80') no-repeat center/cover;
+      width: 300px;
+      height: 600px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .mobile-screen {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .profile-header img {
+      border-radius: 50%;
+      margin-bottom: 10px;
+      width: 80px;
+      height: 80px;
+    }
+
+    .profile-header h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      width: 80%;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .profile-btn:hover {
+      background: var(--secondary);
+    }
+
+    /* Pricing */
+    #pricing .card {
+      background: var(--footer-bg);
+    }
+
+    #pricing .card h3 {
+      color: var(--primary);
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      width: 350px;
+      text-align: left;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    .testimonial-card h4 {
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    /* Pioneers Section */
+    .pioneer-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      width: 350px;
+      text-align: center;
+    }
+
+    .pioneer-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .pioneer-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pioneer-card p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    /* Featured Creators Section */
+    .featured-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      width: 300px;
+      text-align: center;
+    }
+
+    .featured-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .featured-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-card p {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .visit-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .visit-btn:hover {
+      background: var(--secondary);
+    }
+
+    /* FAQ Section */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 119, 255, 0.2);
+    }
+
+    .faq-item input {
+      display: none;
+    }
+
+    .faq-item label {
+      display: block;
+      padding: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      position: relative;
+    }
+
+    .faq-item label::after {
+      content: '+';
+      position: absolute;
+      right: 1rem;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .faq-item input:checked + label::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 1rem;
+    }
+
+    .faq-item input:checked ~ .faq-answer {
+      max-height: 200px;
+      padding: 1rem;
+    }
+
+    .faq-answer p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      padding: 3rem 2rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+      opacity: 0.2;
+      animation: wave 15s linear infinite;
+    }
+
+    footer:hover {
+      background-color: #e0f0ff;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .footer-links {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+    }
+
+    .footer-links h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin: 0.6rem 0;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links li:hover {
+      transform: translateX(5px);
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .footer-links a::before {
+      content: "\f167"; /* Font Awesome droplet icon */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 8px;
+      font-size: 0.8rem;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links a:hover::before {
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(0, 119, 255, 0.2);
+      margin-top: 2rem;
+      animation: fadeIn 1s ease-out;
+      position: relative;
+    }
+
+    .footer-bottom p {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .pi-tagline {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      margin-top: 0.3rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 1.8rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.3);
+      color: var(--secondary);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .section { padding: 3rem 1rem; }
+      .section h2 { font-size: 1.8rem; }
+      .cards { flex-direction: column; align-items: center; }
+      .card { width: 90%; }
+      .footer-container { flex-direction: column; align-items: center; }
+      .footer-links { max-width: 100%; margin-bottom: 2rem; text-align: center; }
+      .footer-links li:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-tint logo-icon"></i> Droplink
+    </div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#templates">Templates</a>
+      <a href="#login">Log In</a>
+      <a href="#get-started" class="cta">Get Started</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Drop All Your Links. Sell with Pi. Connect Instantly.</h1>
+      <p>Join thousands of creators, entrepreneurs, and pioneers on Droplink – the ultimate link-in-bio platform for the Pi Network community. Share your links, sell digital products, and earn Pi seamlessly with a single, beautifully designed page.</p>
+      <div class="buttons">
+        <a href="#create">Create Your Droplink</a>
+        <a href="#demo">Explore Demo Page</a>
+      </div>
+    </div>
+    <div class="floating-icons">
+      <i class="fab fa-youtube floating-icon youtube"></i>
+      <i class="fab fa-telegram-plane floating-icon telegram"></i>
+      <i class="fas fa-coins floating-icon pi"></i>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section" id="how-it-works">
+    <h2>How It Works</h2>
+    <p class="subtitle">Create a seamless experience for your audience in just three simple steps. From setup to earnings, Droplink makes it easy to grow your presence and monetize with Pi Network.</p>
+    <div class="cards">
+      <div class="card">
+        <i class="fas fa-user-plus card-icon"></i>
+        <h3>1. Create</h3>
+        <p>Get started in seconds: sign up, upload a profile picture, and claim your unique @username. Your Droplink page is ready to go live instantly.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-paint-brush card-icon"></i>
+        <h3>2. Customize</h3>
+        <p>Add all your links, social media profiles, and digital products. Choose from stunning templates to make your page stand out with a water-inspired design.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-coins card-icon"></i>
+        <h3>3. Earn</h3>
+        <p>Monetize your audience with Pi Network. Accept tips, sell eBooks, courses, or services, and watch your earnings flow in seamlessly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile Preview Section -->
+  <section class="section" id="mobile-preview">
+    <h2>Your Droplink Profile</h2>
+    <p class="subtitle">A single, elegant page to showcase everything you do. Share your links, collect Pi tips, and sell products – all in one place.</p>
+    <div class="mobile-frame">
+      <div class="mobile-screen">
+        <div class="profile-header">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Profile Pic" />
+          <h3>@username</h3>
+        </div>
+        <button class="profile-btn"><i class="fas fa-coins"></i> Tip Me in Pi</button>
+        <button class="profile-btn"><i class="fas fa-book"></i> Buy My eBook</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <h2>Why Choose Droplink?</h2>
+    <p class="subtitle">Droplink empowers Pi Network creators with tools to connect, share, and earn – all while keeping things simple and beautiful.</p>
+    <div class="cards">
+      <div class="card">
+        <i class="fas fa-palette card-icon"></i>
+        <h3>Custom Themes</h3>
+        <p>Choose from a variety of water-inspired templates that are sleek, modern, and fully customizable to reflect your personal brand.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-chart-line card-icon"></i>
+        <h3>Analytics</h3>
+        <p>Track your link clicks, Pi earnings, and audience engagement with real-time analytics to grow your presence smarter.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-coins card-icon"></i>
+        <h3>Pi Payments</h3>
+        <p>Seamlessly accept Pi for tips, digital products, or services, making monetization effortless within the Pi Network ecosystem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pioneers Section -->
+  <section class="section" id="pioneers">
+    <h2>Meet Our Pioneers</h2>
+    <p class="subtitle">Droplink is proud to support a growing community of creators, entrepreneurs, and innovators on Pi Network. See how they’re making waves.</p>
+    <div class="cards">
+      <div class="pioneer-card">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Jane" />
+        <h3>@CreatorJane</h3>
+        <p>Jane, a digital artist, uses Droplink to sell her NFT artwork and collect Pi tips from her fans. “Droplink made it so easy to share my portfolio and earn directly with Pi!”</p>
+      </div>
+      <div class="pioneer-card">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Mike" />
+        <h3>@ArtistMike</h3>
+        <p>Mike, a musician, shares his latest tracks and connects with fans using Droplink. “I love how I can manage all my links in one place and get paid in Pi instantly!”</p>
+      </div>
+      <div class="pioneer-card">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Sarah" />
+        <h3>@EntrepreneurSarah</h3>
+        <p>Sarah, an entrepreneur, sells her online courses through Droplink. “The analytics feature helps me understand my audience better, and Pi payments are a game-changer!”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Creators Section -->
+  <section class="section" id="featured-creators">
+    <h2>Featured Creators</h2>
+    <p class="subtitle">Discover trending creators who are making the most of Droplink to share their passions and connect with their audiences.</p>
+    <div class="cards">
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1522556189639-b150307f9b87?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Alex" />
+        <h3>@PhotographerAlex</h3>
+        <p>Alex shares stunning photography portfolios and sells prints using Droplink’s Pi payment system.</p>
+        <a href="#" class="visit-btn">Visit Profile</a>
+      </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Luna" />
+        <h3>@BloggerLuna</h3>
+        <p>Luna connects her blog readers with exclusive content and collects Pi tips through her Droplink page.</p>
+        <a href="#" class="visit-btn">Visit Profile</a>
+      </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Kai" />
+        <h3>@ChefKai</h3>
+        <p>Kai shares recipes and sells cooking classes, using Droplink to manage links and earn Pi effortlessly.</p>
+        <a href="#" class="visit-btn">Visit Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section" id="pricing">
+    <h2>Pricing Plans</h2>
+    <p class="subtitle">Choose the plan that fits your needs. Start for free and upgrade to unlock powerful features for your Droplink page.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Free</h3>
+        <p>0π/month<br>Unlimited links, Pi tipping, and basic templates to get you started on your journey.</p>
+      </div>
+      <div class="card">
+        <h3>Pro</h3>
+        <p>3π/month<br>Unlock advanced features like selling digital goods, detailed analytics, and premium water-inspired themes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section" id="testimonials">
+    <h2>What Our Community Says</h2>
+    <p class="subtitle">Join a global community of creators who trust Droplink to simplify their online presence and monetize with Pi Network.</p>
+    <div class="cards">
+      <div class="testimonial-card">
+        <p>"Droplink transformed the way I connect with my audience. I can share all my links in one place, and the Pi tipping feature is incredible for supporting my art!"</p>
+        <h4>— @CreatorJane, Digital Artist</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"As a musician, I needed a simple way to share my music and connect with fans. Droplink’s seamless Pi payments make it so easy to earn while doing what I love."</p>
+        <h4>— @ArtistMike, Musician</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p class="subtitle">Everything you need to know about getting started with Droplink and making the most of your link-in-bio experience.</p>
+    <div class="faq">
+      <div class="faq-item">
+        <input type="checkbox" id="faq1">
+        <label for="faq1">What is Droplink?</label>
+        <div class="faq-answer">
+          <p>Droplink is a link-in-bio platform designed for the Pi Network community. It allows creators, entrepreneurs, and pioneers to share all their links, sell digital products, and earn Pi tips through a single, beautifully designed page.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq2">
+        <label for="faq2">How do I earn with Pi on Droplink?</label>
+        <div class="faq-answer">
+          <p>You can earn Pi by accepting tips from your audience or selling digital products like eBooks, courses, or artwork directly on your Droplink page. All transactions are seamlessly processed through Pi Network, making monetization effortless.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq3">
+        <label for="faq3">Is Droplink free to use?</label>
+        <div class="faq-answer">
+          <p>Yes! Droplink offers a free plan with unlimited links and Pi tipping. You can upgrade to the Pro plan for 3π/month to unlock advanced features like analytics, premium templates, and the ability to sell digital goods.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq4">
+        <label for="faq4">Can I customize my Droplink page?</label>
+        <div class="faq-answer">
+          <p>Absolutely! Droplink offers a variety of water-inspired templates that you can customize to match your personal style. Add your links, social media profiles, and products to create a page that’s uniquely yours.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq5">
+        <label for="faq5">Is there a mobile app for Droplink?</label>
+        <div class="faq-answer">
+          <p>Droplink is fully mobile-optimized, so you can create and manage your page from any device. We’re also working on a native mobile app to make the experience even better – stay tuned!</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq6">
+        <label for="faq6">How does Droplink support the Pi Network community?</label>
+        <div class="faq-answer">
+          <p>Droplink is built specifically for Pi Network users, offering seamless integration for Pi payments, tipping, and digital sales. We also foster a community of creators and pioneers, providing resources, analytics, and templates to help you grow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-links">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#blog">The Droplink Blog</a></li>
+          <li><a href="#engineering-blog">Engineering Blog</a></li>
+          <li><a href="#marketplace">Marketplace</a></li>
+          <li><a href="#whats-new">What's New</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#press">Press</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#link-in-bio">Link in Bio</a></li>
+          <li><a href="#social-good">Social Good</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="#enterprise">Droplink for Enterprise</a></li>
+          <li><a href="#creator-report-2023">2023 Creator Report</a></li>
+          <li><a href="#creator-report-2022">2022 Creator Report</a></li>
+          <li><a href="#charities">Charities</a></li>
+          <li><a href="#trending">What's Trending</a></li>
+          <li><a href="#creator-directory">Creator Profile Directory</a></li>
+          <li><a href="#explore-templates">Explore Templates</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#help-topics">Help Topics</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#droplink-pro">Droplink Pro</a></li>
+          <li><a href="#features-how-tos">Features & How-Tos</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#report-violation">Report a Violation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Trust & Legal</h3>
+        <ul>
+          <li><a href="#terms-conditions">Terms & Conditions</a></li>
+          <li><a href="#privacy-notice">Privacy Notice</a></li>
+          <li><a href="#cookie-notice">Cookie Notice</a></li>
+          <li><a href="#trust-center">Trust Center</a></li>
+          <li><a href="#cookie-preferences">Cookie Preferences</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Account</h3>
+        <ul>
+          <li><a href="#login">Log In</a></li>
+          <li><a href="#get-started">Get Started for Free</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Droplink | Built for Pi Network with <i class="fas fa-tint"></i></p>
+      <p class="pi-tagline">Powered by Pi Network <i class="fas fa-water"></i></p>
+      <div class="social-links">
+        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
