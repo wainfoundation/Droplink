@@ -95,6 +95,7 @@
       color: white;
       position: relative;
       overflow: hidden;
+      min-height: 500px; /* Ensure enough space for content */
     }
 
     .hero::before {
@@ -106,6 +107,7 @@
       height: 100%;
       background: var(--gradient);
       opacity: 0.7;
+      z-index: 1; /* Below content but above background */
     }
 
     .hero::after {
@@ -117,6 +119,7 @@
       height: 100%;
       background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
       animation: wave 15s linear infinite;
+      z-index: 1; /* Same level as ::before */
     }
 
     @keyframes wave {
@@ -128,6 +131,7 @@
       position: relative;
       max-width: 800px;
       margin: 0 auto;
+      z-index: 3; /* Above floating icons and background overlays */
     }
 
     .hero h1 {
@@ -145,13 +149,23 @@
       margin: 0 auto 2rem;
     }
 
+    .hero .buttons {
+      position: relative;
+      z-index: 4; /* Ensure buttons container is above content */
+    }
+
     .hero .buttons a {
       margin: 0.5rem;
       padding: 0.9rem 2rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 5; /* Highest z-index to ensure clickability */
     }
 
     .hero .buttons a:first-child {
@@ -169,6 +183,12 @@
       transform: scale(1.05);
       background: var(--secondary);
       color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero .buttons a:active {
+      transform: scale(0.95);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
 
     .floating-icons {
@@ -178,6 +198,7 @@
       top: 0;
       left: 0;
       pointer-events: none;
+      z-index: 2; /* Below hero-content but above background overlays */
     }
 
     .floating-icon {
@@ -185,6 +206,7 @@
       font-size: 2.5rem;
       color: white;
       animation: float 6s ease-in-out infinite;
+      pointer-events: none; /* Ensure icons don't block clicks */
     }
 
     .youtube { top: 20%; left: 10%; animation-delay: 0s; }
@@ -666,8 +688,8 @@
       <h1>Drop All Your Links. Sell with Pi. Connect Instantly.</h1>
       <p>Join thousands of creators, entrepreneurs, and pioneers on Droplink – the ultimate link-in-bio platform for the Pi Network community. Share your links, sell digital products, and earn Pi seamlessly with a single, beautifully designed page.</p>
       <div class="buttons">
-        <a href="create.html">Create Your Droplink</a>
-        <a href="demo.html">Explore Demo Page</a>
+        <a href="create.html" role="button" aria-label="Create Your Droplink">Create Your Droplink</a>
+        <a href="demo.html" role="button" aria-label="Explore Demo Page">Explore Demo Page</a>
       </div>
     </div>
     <div class="floating-icons">
