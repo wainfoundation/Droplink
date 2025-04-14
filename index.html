@@ -322,22 +322,38 @@
     /* Testimonials */
     .testimonial-card {
       background: var(--card-bg);
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: 12px;
       box-shadow: var(--shadow);
       width: 350px;
       text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
     }
 
-    .testimonial-card p {
+    .testimonial-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .testimonial-content {
+      flex: 1;
+    }
+
+    .testimonial-content p {
       font-style: italic;
       margin-bottom: 1rem;
       color: #444;
+      font-size: 0.95rem;
     }
 
-    .testimonial-card h4 {
+    .testimonial-content h4 {
       font-size: 1rem;
       color: var(--primary);
+      font-weight: 600;
     }
 
     /* Pioneers Section */
@@ -568,6 +584,20 @@
       position: relative;
     }
 
+    .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      margin-right: 5px;
+    }
+
+    .footer-logo i {
+      margin-right: 8px;
+    }
+
     .footer-bottom p {
       margin-bottom: 0.5rem;
       font-weight: 600;
@@ -614,6 +644,7 @@
       .footer-container { flex-direction: column; align-items: center; }
       .footer-links { max-width: 100%; margin-bottom: 2rem; text-align: center; }
       .footer-links li:hover { transform: none; }
+      .testimonial-card { flex-direction: column; align-items: center; text-align: center; }
     }
   </style>
 </head>
@@ -624,11 +655,11 @@
       <i class="fas fa-tint logo-icon"></i> Droplink
     </div>
     <nav>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#templates">Templates</a>
-      <a href="#login">Log In</a>
-      <a href="#get-started" class="cta">Get Started</a>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="templates.html">Templates</a>
+      <a href="login.html">Log In</a>
+      <a href="get-started.html" class="cta">Get Started</a>
     </nav>
   </header>
 
@@ -638,8 +669,8 @@
       <h1>Drop All Your Links. Sell with Pi. Connect Instantly.</h1>
       <p>Join thousands of creators, entrepreneurs, and pioneers on Droplink – the ultimate link-in-bio platform for the Pi Network community. Share your links, sell digital products, and earn Pi seamlessly with a single, beautifully designed page.</p>
       <div class="buttons">
-        <a href="#create">Create Your Droplink</a>
-        <a href="#demo">Explore Demo Page</a>
+        <a href="create.html">Create Your Droplink</a>
+        <a href="demo.html">Explore Demo Page</a>
       </div>
     </div>
     <div class="floating-icons">
@@ -743,19 +774,19 @@
         <img src="https://images.unsplash.com/photo-1522556189639-b150307f9b87?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Alex" />
         <h3>@PhotographerAlex</h3>
         <p>Alex shares stunning photography portfolios and sells prints using Droplink’s Pi payment system.</p>
-        <a href="#" class="visit-btn">Visit Profile</a>
+        <a href="photographer-alex.html" class="visit-btn">Visit Profile</a>
       </div>
       <div class="featured-card">
         <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Luna" />
         <h3>@BloggerLuna</h3>
         <p>Luna connects her blog readers with exclusive content and collects Pi tips through her Droplink page.</p>
-        <a href="#" class="visit-btn">Visit Profile</a>
+        <a href="blogger-luna.html" class="visit-btn">Visit Profile</a>
       </div>
       <div class="featured-card">
         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Kai" />
         <h3>@ChefKai</h3>
         <p>Kai shares recipes and sells cooking classes, using Droplink to manage links and earn Pi effortlessly.</p>
-        <a href="#" class="visit-btn">Visit Profile</a>
+        <a href="chef-kai.html" class="visit-btn">Visit Profile</a>
       </div>
     </div>
   </section>
@@ -782,12 +813,18 @@
     <p class="subtitle">Join a global community of creators who trust Droplink to simplify their online presence and monetize with Pi Network.</p>
     <div class="cards">
       <div class="testimonial-card">
-        <p>"Droplink transformed the way I connect with my audience. I can share all my links in one place, and the Pi tipping feature is incredible for supporting my art!"</p>
-        <h4>— @CreatorJane, Digital Artist</h4>
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Jane Avatar" />
+        <div class="testimonial-content">
+          <p>"Droplink transformed the way I connect with my audience. I can share all my links in one place, and the Pi tipping feature is incredible for supporting my art!"</p>
+          <h4>— @CreatorJane, Digital Artist</h4>
+        </div>
       </div>
       <div class="testimonial-card">
-        <p>"As a musician, I needed a simple way to share my music and connect with fans. Droplink’s seamless Pi payments make it so easy to earn while doing what I love."</p>
-        <h4>— @ArtistMike, Musician</h4>
+        <img src="https://images.unsplash.com/photo-1519227355628-82731f3a4d5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Mike Avatar" />
+        <div class="testimonial-content">
+          <p>"As a musician, I needed a simple way to share my music and connect with fans. Droplink’s seamless Pi payments make it so easy to earn while doing what I love."</p>
+          <h4>— @ArtistMike, Musician</h4>
+        </div>
       </div>
     </div>
   </section>
@@ -848,71 +885,71 @@
       <div class="footer-links">
         <h3>Company</h3>
         <ul>
-          <li><a href="#blog">The Droplink Blog</a></li>
-          <li><a href="#engineering-blog">Engineering Blog</a></li>
-          <li><a href="#marketplace">Marketplace</a></li>
-          <li><a href="#whats-new">What's New</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#press">Press</a></li>
-          <li><a href="#careers">Careers</a></li>
-          <li><a href="#link-in-bio">Link in Bio</a></li>
-          <li><a href="#social-good">Social Good</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="blog.html">The Droplink Blog</a></li>
+          <li><a href="engineering-blog.html">Engineering Blog</a></li>
+          <li><a href="marketplace.html">Marketplace</a></li>
+          <li><a href="whats-new.html">What's New</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="press.html">Press</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="link-in-bio.html">Link in Bio</a></li>
+          <li><a href="social-good.html">Social Good</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
 
       <div class="footer-links">
         <h3>Community</h3>
         <ul>
-          <li><a href="#enterprise">Droplink for Enterprise</a></li>
-          <li><a href="#creator-report-2023">2023 Creator Report</a></li>
-          <li><a href="#creator-report-2022">2022 Creator Report</a></li>
-          <li><a href="#charities">Charities</a></li>
-          <li><a href="#trending">What's Trending</a></li>
-          <li><a href="#creator-directory">Creator Profile Directory</a></li>
-          <li><a href="#explore-templates">Explore Templates</a></li>
+          <li><a href="enterprise.html">Droplink for Enterprise</a></li>
+          <li><a href="creator-report-2023.html">2023 Creator Report</a></li>
+          <li><a href="creator-report-2022.html">2022 Creator Report</a></li>
+          <li><a href="charities.html">Charities</a></li>
+          <li><a href="trending.html">What's Trending</a></li>
+          <li><a href="creator-directory.html">Creator Profile Directory</a></li>
+          <li><a href="explore-templates.html">Explore Templates</a></li>
         </ul>
       </div>
 
       <div class="footer-links">
         <h3>Support</h3>
         <ul>
-          <li><a href="#help-topics">Help Topics</a></li>
-          <li><a href="#getting-started">Getting Started</a></li>
-          <li><a href="#droplink-pro">Droplink Pro</a></li>
-          <li><a href="#features-how-tos">Features & How-Tos</a></li>
-          <li><a href="#faqs">FAQs</a></li>
-          <li><a href="#report-violation">Report a Violation</a></li>
+          <li><a href="help-topics.html">Help Topics</a></li>
+          <li><a href="getting-started.html">Getting Started</a></li>
+          <li><a href="droplink-pro.html">Droplink Pro</a></li>
+          <li><a href="features-how-tos.html">Features & How-Tos</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="report-violation.html">Report a Violation</a></li>
         </ul>
       </div>
 
       <div class="footer-links">
         <h3>Trust & Legal</h3>
         <ul>
-          <li><a href="#terms-conditions">Terms & Conditions</a></li>
-          <li><a href="#privacy-notice">Privacy Notice</a></li>
-          <li><a href="#cookie-notice">Cookie Notice</a></li>
-          <li><a href="#trust-center">Trust Center</a></li>
-          <li><a href="#cookie-preferences">Cookie Preferences</a></li>
+          <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+          <li><a href="privacy-notice.html">Privacy Notice</a></li>
+          <li><a href="cookie-notice.html">Cookie Notice</a></li>
+          <li><a href="trust-center.html">Trust Center</a></li>
+          <li><a href="cookie-preferences.html">Cookie Preferences</a></li>
         </ul>
       </div>
 
       <div class="footer-links">
         <h3>Account</h3>
         <ul>
-          <li><a href="#login">Log In</a></li>
-          <li><a href="#get-started">Get Started for Free</a></li>
+          <li><a href="login.html">Log In</a></li>
+          <li><a href="get-started.html">Get Started for Free</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Droplink | Built for Pi Network with <i class="fas fa-tint"></i></p>
+      <p><span class="footer-logo"><i class="fas fa-tint"></i> Droplink</span> © 2025 | Built for Pi Network with <i class="fas fa-tint"></i></p>
       <p class="pi-tagline">Powered by Pi Network <i class="fas fa-water"></i></p>
       <div class="social-links">
-        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://facebook.com" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
       </div>
     </div>
   </footer>
