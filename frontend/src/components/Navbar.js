@@ -1,33 +1,22 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Container,
-} from '@mui/material';
+import { FaWater } from 'react-icons/fa';
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
-      <Container>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Droplink
-          </Typography>
-          <Button color="inherit" component={RouterLink} to="/">
-            Home
-          </Button>
-          <Button color="inherit" component={RouterLink} to="/login">
-            Login
-          </Button>
-          <Button color="inherit" component={RouterLink} to="/register">
-            Register
-          </Button>
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <header>
+      <Link to="/" className="logo">
+        <FaWater className="logo-icon" />
+        Droplink
+      </Link>
+      <nav>
+        <RouterLink to="/features">Features</RouterLink>
+        <RouterLink to="/pricing">Pricing</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/contact">Contact</RouterLink>
+      </nav>
+      <RouterLink to="/login" className="cta">Get Started</RouterLink>
+    </header>
   );
 };
 
