@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Droplink | Pricing Plans</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* Root Variables */
+    :root {
+      --primary: #00aaff; /* Aqua blue */
+      --secondary: #0077cc; /* Deeper blue */
+      --gradient: linear-gradient(45deg, #00aaff, #00d4ff); /* Water gradient */
+      --text: #002b4f; /* Dark blue text */
+      --background: #f0f9ff; /* Light blue background */
+      --card-bg: #ffffff; /* White card background */
+      --footer-bg: #e6f3ff; /* Footer background */
+      --hover-bg: #b3e5fc; /* Hover background */
+      --shadow: 0 4px 12px rgba(0, 119, 255, 0.1); /* Soft shadow */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      position: sticky;
+      top: 0;
+      padding: 1.2rem 3rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-icon {
+      margin-right: 8px;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin: 0 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .cta {
+      background: var(--primary);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background: var(--secondary);
+    }
+
+    /* Sections */
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .section p.subtitle {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: var(--text);
+    }
+
+    /* Pricing Section */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--footer-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .card.popular::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .card .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .card .price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #666;
+    }
+
+    .card .billing {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .card p.tagline {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
+    .card ul li {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card ul li i {
+      color: var(--primary);
+      margin-right: 8px;
+    }
+
+    .card .btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .card .btn:hover {
+      background: var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .card .btn.trial {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .card .btn.trial:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* FAQ Section */
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 119, 255, 0.2);
+    }
+
+    .faq-item input {
+      display: none;
+    }
+
+    .faq-item label {
+      display: block;
+      padding: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      position: relative;
+    }
+
+    .faq-item label::after {
+      content: '+';
+      position: absolute;
+      right: 1rem;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .faq-item input:checked + label::after {
+      content: '−';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 1rem;
+    }
+
+    .faq-item input:checked ~ .faq-answer {
+      max-height: 200px;
+      padding: 1rem;
+    }
+
+    .faq-answer p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      padding: 3rem 2rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+      opacity: 0.2;
+      animation: wave 15s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
+    footer:hover {
+      background-color: #e0f0ff;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .footer-links {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+    }
+
+    .footer-links h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin: 0.6rem 0;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links li:hover {
+      transform: translateX(5px);
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .footer-links a i {
+      margin-right: 8px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links a:hover i {
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(0, 119, 255, 0.2);
+      margin-top: 2rem;
+      animation: fadeIn 1s ease-out;
+      position: relative;
+    }
+
+    .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      margin-right: 5px;
+    }
+
+    .footer-logo i {
+      margin-right: 8px;
+    }
+
+    .footer-bottom p {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .pi-tagline {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      margin-top: 0.3rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 1.8rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.3);
+      color: var(--secondary);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 3rem 1rem; }
+      .section h2 { font-size: 1.8rem; }
+      .cards { flex-direction: column; align-items: center; }
+      .card { width: 90%; }
+      .footer-container { flex-direction: column; align-items: center; }
+      .footer-links { max-width: 100%; margin-bottom: 2rem; text-align: center; }
+      .footer-links li:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-tint logo-icon"></i> Droplink
+    </div>
+    <nav>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="templates.html">Templates</a>
+      <a href="login.html">Log In</a>
+      <a href="get-started.html" class="cta">Get Started</a>
+    </nav>
+  </header>
+
+  <!-- Pricing Section -->
+  <section class="section" id="pricing">
+    <h2>Pricing Plans</h2>
+    <p class="subtitle">Boost your digital presence and monetize your audience with Droplink. Choose a plan that fits your needs and start earning with Pi today.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Free</h3>
+        <div class="price">0π<span>/month</span></div>
+        <div class="billing">Free, forever</div>
+        <p class="tagline">Boost your digital presence and monetize your socials</p>
+        <ul>
+          <li><i class="fas fa-check"></i>Unlimited Links</li>
+          <li><i class="fas fa-check"></i>Multi-Factor Authentication</li>
+          <li><i class="fas fa-check"></i>Drive Offline Traffic with QR Codes</li>
+          <li><i class="fas fa-check"></i>Connect All Social Profiles</li>
+          <li><i class="fas fa-check"></i>Sell Products with Pi Payments</li>
+        </ul>
+        <a href="get-started.html" class="btn">Join for Free</a>
+      </div>
+      <div class="card">
+        <h3>Starter</h3>
+        <div class="price">2π<span>/month</span></div>
+        <div class="billing">Billed annually</div>
+        <p class="tagline">Capture attention and engage visitors effortlessly</p>
+        <ul>
+          <li><i class="fas fa-check"></i>Everything in Free</li>
+          <li><i class="fas fa-check"></i>Schedule Links to Go Live/Disappear</li>
+          <li><i class="fas fa-check"></i>Add Animations to Highlight Links</li>
+          <li><i class="fas fa-check"></i>Customize Button Colors and Fonts</li>
+          <li><i class="fas fa-check"></i>Spotlight a Link on Page Load</li>
+          <li><i class="fas fa-check"></i>Track Link and Pi Earnings Performance</li>
+        </ul>
+        <a href="get-started.html" class="btn">Get Starter</a>
+      </div>
+      <div class="card popular">
+        <h3>Pro</h3>
+        <div class="price">4π<span>/month</span></div>
+        <div class="billing">Billed annually</div>
+        <p class="tagline">Elevate your brand, unlock insights, and supercharge growth</p>
+        <ul>
+          <li><i class="fas fa-check"></i>Everything in Starter</li>
+          <li><i class="fas fa-check"></i>Custom Water-Inspired Themes</li>
+          <li><i class="fas fa-check"></i>Location-Based Analytics</li>
+          <li><i class="fas fa-check"></i>Collect Emails and Phone Numbers</li>
+          <li><i class="fas fa-check"></i>SEO Settings and Pi Network Integrations</li>
+        </ul>
+        <a href="get-started.html" class="btn trial">Free for 7 Days</a>
+      </div>
+      <div class="card">
+        <h3>Premium</h3>
+        <div class="price">10π<span>/month</span></div>
+        <div class="billing">Billed annually</div>
+        <p class="tagline">Personalized support to build your best Droplink</p>
+        <ul>
+          <li><i class="fas fa-check"></i>Everything in Pro</li>
+          <li><i class="fas fa-check"></i>Tailored Onboarding Support</li>
+          <li><i class="fas fa-check"></i>Priority Support (4-Hour Response)</li>
+          <li><i class="fas fa-check"></i>Unlimited Historical Insights</li>
+          <li><i class="fas fa-check"></i>Export Analytics Data</li>
+        </ul>
+        <a href="get-started.html" class="btn">Get Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p class="subtitle">Have questions about our pricing plans? We’ve got answers to help you choose the right plan for your Droplink journey.</p>
+    <div class="faq">
+      <div class="faq-item">
+        <input type="checkbox" id="faq1">
+        <label for="faq1">What’s included in the Free plan?</label>
+        <div class="faq-answer">
+          <p>The Free plan includes unlimited links, multi-factor authentication, QR codes for offline traffic, social profile connections, and the ability to sell products with Pi payments.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq2">
+        <label for="faq2">How do I pay for Droplink plans?</label>
+        <div class="faq-answer">
+          <p>All plans are billed in Pi through the Pi Network. The Starter, Pro, and Premium plans are billed annually, and the payment will be deducted directly from your Pi wallet.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq3">
+        <label for="faq3">What does the 7-day free trial for Pro include?</label>
+        <div class="faq-answer">
+          <p>The 7-day free trial for the Pro plan gives you access to all Pro features, including custom themes, location-based analytics, email/phone collection, and SEO settings. After the trial, you’ll be charged 4π/month, billed annually.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq4">
+        <label for="faq4">Can I switch plans later?</label>
+        <div class="faq-answer">
+          <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and your billing will be adjusted accordingly in Pi.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq5">
+        <label for="faq5">What kind of support does Premium offer?</label>
+        <div class="faq-answer">
+          <p>The Premium plan includes tailored onboarding, priority support with a response time of 4 hours or less, unlimited historical insights, and the ability to export your analytics data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-links">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="blog.html"><i class="fas fa-blog"></i> The Droplink Blog</a></li>
+          <li><a href="engineering-blog.html"><i class="fas fa-code"></i> Engineering Blog</a></li>
+          <li><a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a></li>
+          <li><a href="whats-new.html"><i class="fas fa-bullhorn"></i> What's New</a></li>
+          <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+          <li><a href="press.html"><i class="fas fa-newspaper"></i> Press</a></li>
+          <li><a href="careers.html"><i class="fas fa-briefcase"></i> Careers</a></li>
+          <li><a href="link-in-bio.html"><i class="fas fa-link"></i> Link in Bio</a></li>
+          <li><a href="social-good.html"><i class="fas fa-hands-helping"></i> Social Good</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="enterprise.html"><i class="fas fa-building"></i> Droplink for Enterprise</a></li>
+          <li><a href="creator-report-2023.html"><i class="fas fa-file-alt"></i> 2023 Creator Report</a></li>
+          <li><a href="creator-report-2022.html"><i class="fas fa-file-alt"></i> 2022 Creator Report</a></li>
+          <li><a href="charities.html"><i class="fas fa-heart"></i> Charities</a></li>
+          <li><a href="trending.html"><i class="fas fa-fire"></i> What's Trending</a></li>
+          <li><a href="creator-directory.html"><i class="fas fa-users"></i> Creator Profile Directory</a></li>
+          <li><a href="explore-templates.html"><i class="fas fa-paint-brush"></i> Explore Templates</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="help-topics.html"><i class="fas fa-question-circle"></i> Help Topics</a></li>
+          <li><a href="getting-started.html"><i class="fas fa-rocket"></i> Getting Started</a></li>
+          <li><a href="droplink-pro.html"><i class="fas fa-star"></i> Droplink Pro</a></li>
+          <li><a href="features-how-tos.html"><i class="fas fa-book"></i> Features & How-Tos</a></li>
+          <li><a href="faqs.html"><i class="fas fa-info"></i> FAQs</a></li>
+          <li><a href="report-violation.html"><i class="fas fa-exclamation-triangle"></i> Report a Violation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Trust & Legal</h3>
+        <ul>
+          <li><a href="terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+          <li><a href="privacy-notice.html"><i class="fas fa-shield-alt"></i> Privacy Notice</a></li>
+          <li><a href="cookie-notice.html"><i class="fas fa-cookie-bite"></i> Cookie Notice</a></li>
+          <li><a href="trust-center.html"><i class="fas fa-lock"></i> Trust Center</a></li>
+          <li><a href="cookie-preferences.html"><i class="fas fa-cog"></i> Cookie Preferences</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Account</h3>
+        <ul>
+          <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Log In</a></li>
+          <li><a href="get-started.html"><i class="fas fa-user-plus"></i> Get Started for Free</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p><span class="footer-logo"><i class="fas fa-tint"></i> Droplink</span> © 2025 | Built for Pi Network with <i class="fas fa-tint"></i></p>
+      <p class="pi-tagline">Powered by Pi Network <i class="fas fa-water"></i></p>
+      <div class="social-links">
+        <a href="https://instagram.com" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" class="twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://facebook.com" class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
