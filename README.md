@@ -1,39 +1,86 @@
 # Droplink
 
-**Droplink** is a platform designed for creators and businesses to manage and share content, connect with their audience, and grow their online presence. It integrates Pi Network for secure, decentralized payments, enabling users to easily use Pi for transactions and collaborations.
+A modern file sharing application with React frontend and Node.js/Express backend.
 
-## Features:
-- Content management tools for creators 📱
-- Marketplace for collaborations and networking 🤝
-- Pi Network integration for secure payments 💸
-- Analytics dashboard for insights 📊
-- User-friendly interface for both beginners and pros 👩‍💻👨‍💻
+## Project Structure
 
-## Getting Started:
-1. **Sign Up**: Create your Droplink account and customize your profile.
-2. **Start Sharing**: Upload content, engage with your audience, and explore new collaborations.
-3. **Pi Integration**: Set up Pi as your payment method to receive or make transactions securely.
+```
+droplink/
+├── frontend/           # React frontend
+├── backend/           # Node.js/Express backend
+├── docker-compose.yml # Docker composition
+└── requirements.txt   # Python dependencies
+```
 
-## Installation (For Developers):
+## Prerequisites
+
+- Docker and Docker Compose
+- Node.js (v18 or higher)
+- Python 3.8 or higher
+- npm or yarn
+
+## Setup Instructions
+
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/ReimagineTruth/droplink.git
-   ```
+```bash
+git clone <repository-url>
+cd droplink
+```
+
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the project:
-   ```bash
-   npm start
-   ```
 
-## Technologies Used:
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js, Express
-- Payment: Pi Network Integration
+Frontend:
+```bash
+cd frontend
+npm install
+```
 
-## License:
-This project is licensed under the Pios License - see the [LICENSE](LICENSE) file for details.
+Backend:
+```bash
+cd backend
+npm install
+```
+
+Python dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Start the application using Docker Compose:
+```bash
+docker-compose up --build
+```
+
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5000
+- MongoDB: mongodb://localhost:27017
+
+## Development
+
+- Frontend development server: `cd frontend && npm start`
+- Backend development server: `cd backend && npm run dev`
+- Run tests: `npm test` in respective directories
+
+## Features
+
+- User authentication
+- File upload and sharing
+- Secure file storage
+- Modern Material-UI interface
+- RESTful API
+- MongoDB database
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
